@@ -4,9 +4,33 @@
 <html>
     <head>
         
-    <link rel="stylesheet" href="designs.css">
-    <style>
-        footer .content p,a{
+        <link rel="stylesheet" href="designs.css">
+         <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+  text-decoration: none;
+}
+footer{
+  width: 100%;
+ 
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: rgb(21, 6, 50);
+}
+footer .content{
+  max-width: 1350px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+footer .content p,a{
   color: #fff;
 }
 footer .content .box{
@@ -102,29 +126,44 @@ footer a:hover{
     padding-left: 0;
   }
 }
+
     </style>
     </head>
       <body>
         <header>  
             <Center> <h1>DONATİON WEBSITE</h1></Center>
-           
             <nav>
-            <a href="main_page.php">Main Page</a>
+            <a href="main_page.php">main page</a>
+            <a href="mainpage.php">Main Page</a>
                 <a href="about_us_page.html">About Us</a>
-                <a href="">Donate</a>
-                <a href="stuff_page.php">Find Product</a>
+                <a href="donate_stuff_page.php">Donate</a>
+                <a href="">Find Product</a>
                 <a href="contact.php">Contact Us</a>
                 <div class="animation start-home"></div>
-
-          
             </nav>
             <hr>
          </header>
-         <br><br><br><br><br><br><br><br><br>
-         <section style="border: 50px; align-items: center; padding-left: 450px;">
-        <img src="https://viridianmmd.com/wp-content/uploads/2021/09/welcome_to_website-1.jpg" height="500" width="3000"  alt="">
+         <section style="padding: 50px;">
+            <h3>Contact Us via This Form</h3>
+    
+    <div class="container">
+      <form action="contact.php" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="namesurname" name="name" placeholder="Name and Surname">
+    
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Email">
+        <label for="stuffname">Stuff Name</label>
+        <input type="text" id="stuffname" name="stuffname" placeholder="Email">
+       
+        </select>
+    
+
+    
+        <input type="submit" value="Submit">
+      </form>
+    </div>
          </section>
-         
          <footer>
             <div class="content">
               <div class="left box">
@@ -151,7 +190,7 @@ footer a:hover{
                 <a href="donate_stuff_page.php">Donate</a>
                
                 <BR></BR>
-                <a href="contact.php">Contact Us</a>
+                <a href="neededstuff.php">Contact Us</a>
               </div>
               <div class="right box">
           
@@ -159,7 +198,27 @@ footer a:hover{
             <div class="bottom">
             <p style="color: rgb(121, 1, 130); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">BY AYSE ALMACI</p>
           </footer>
-       
-        
     </body>
 </html>
+
+<?php
+
+include("database_connection.php");
+
+if(isset($_POST["stuffname"],$_POST["namesurname"],$_POST["email"])){
+    $name = $_POST["stuffname"];
+    $namesurname = $_POST["namesurname"];
+    $email = $_POST["email"];
+ 
+
+    $addtocontact = "INSERT INTO contact(stuffname,namesurname,email) VALUES ('".$name."','".$namesurname."','".$email."' )";
+
+    if($database->query($addtocontact)===TRUE){
+        echo "<script>
+        alert('Mesaj gönderildi')
+        </script>";
+    }
+   
+}
+?>
+

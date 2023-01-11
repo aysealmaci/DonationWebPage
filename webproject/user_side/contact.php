@@ -10,11 +10,11 @@
         <header>  
             <Center> <h1>DONATİON WEBSITE</h1></Center>
             <nav>
-                <a href="index.html">main page</a>
-                <a href="about_us.html">About Us</a>
-                <a href="donate_page.html">Donate</a>
-                <a href="find_product_page.html">Find Product</a>
-               <a href="contact_us.html">Contact Us</a>
+            <a href="main_page.php">main page</a>
+                <a href="about_us_page.html">About Us</a>
+                <a href="">Donate</a>
+                <a href="stuff_page.php">Find Product</a>
+                <a href="contact.php">Contact Us</a>
                 <div class="animation start-home"></div>
             </nav>
             <hr>

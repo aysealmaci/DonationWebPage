@@ -1,48 +1,4 @@
-<?php
-   include("connectdb.php");
-   
-   $message="";
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-     $StuffName = $_POST['stuff_name'];
-	 $DonatorName = $_POST['donator_name'];
-	if(!empty($_FILES['resim']['name'])) { 
-        $fileName = basename($_FILES["resim"]["name"]); 
-        $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
-
-        $allowTypes = array('jpg','png','jpeg','gif'); 
-        if(in_array($fileType, $allowTypes)){
-	    $image = $_FILES['resim']['tmp_name']; 
-       $imgContent = addslashes(file_get_contents($image));
-	   //addslashes===>Add a backslash in front of each double quote (")===>\"text\"
-		}
-else{
-print( 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.' );
-die();}
-	}
-else{ 
-        print( 'Please select an image file to upload.'); 
-    die();}	
-	
-       $query = "INSERT INTO stuff (stuff_name,resim,donator_name	
-       ) VALUES('$StuffName', '$imgContent','$DonatorName')";
-	   
-    $result=mysqli_query($connect, $query);
-	
-    if($result){
-	$message = "Students Contacts Information added successfully.";
-    } else{
-     $message = "ERROR: Could not able to execute $query. ";  
-      }
-   }
-   
-?>
-<html>
-   
-   <head>
-      <title>Insert Students Contacts Information</title>
-      <style>
-              nav {
+nav {
 	margin: 27px auto 0;
  
 	position: relative;
@@ -117,6 +73,11 @@ header{font-size: 40px;
     
     }
 
+   footer{background-color:rgb(15, 19, 75);
+   height: 250px;
+   
+
+}
 
 
 
@@ -275,55 +236,3 @@ max-width: fit-content;}
 	from {transform: scale(0)}
 	to {transform: scale(1)}
   }
-      </style>
-      
-   </head>
-   
-   <body bgcolor = "#FFFFFF">
-            <div><b>Enter Stuff Information </b></div>
-				
-            <div style = "margin:30px, ">
-               
-               <form action = "" method = "post" enctype="multipart/form-data">
-			   
-                  <label>Stuff Name :</label><input type = "text" name = "stuff_name" class = "box"/><br /><br />
-               
-				  
-				  <label>Donator Name  :</label><input type = "text" name = "donator_name" class = "box" /><br/><br />
-				
-				  <label>Select Image File:</label><input type="file" name="resim">
-				  <br/><br /> 
-                  <input type = "submit" value = " Insert "/><br />
-               </form>
-               
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $message; ?></div>
-         </div>
-
-         <?php
-   include("connectdb.php");
-
-	 $query = "SELECT * FROM stuff";
-
-  ?>
-			
-      </div>
-
-   </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
